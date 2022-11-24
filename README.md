@@ -1,1 +1,83 @@
-# Application-Layer-API
+<!DOCTYPE html>
+<html>
+
+<header>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</header>
+<body class="mx-auto" style="width: 400px;">
+
+<img src="https://learn.g2.com/hs-fs/hubfs/G2CM_FI167_Learn_Article_Images_%5BAPI%5D_Infographic_V1a.png?width=690" class="img-fluid" alt="JavaScript">
+
+
+
+<h3>How does API's Improve Application Development</h3>
+<p>With basic knowledge of API's You can find out that: </p>
+<div style="display: flex; justify-content: space-between;">
+  <h4>You IP address is: </h4>
+  <p id = "ip"></p>
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <h4>You are from: </h4>
+  <p id = "loc"></p>
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <h4>You Region is:</h4>
+  <p id="region"></p>
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <h4>Current temperature is: </h4> 
+  <p id="temp"></p>
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <h4>The weather is: </h4>
+  <p id="weather"></p>
+  
+</div>
+
+
+<img src="https://images.squarespace-cdn.com/content/v1/59051f5dbebafb1fcb3f32ec/1583599848894-NQK12W7YU5BFP9IJ0461/Rest%2BAPI-8.png?format=2500w" class="img-fluid" alt="JavaScript">
+
+
+<script type="application/javascript">
+        
+        var  cityy ,ss
+		let region = document.getElementById("region")
+        let loc = document.getElementById("loc")
+        let b = document.getElementById("ip")
+        let c = document.getElementById("weather")
+        let temp = document.getElementById("temp")
+ss = String.fromCodePoint(8457)
+
+        fetch("https://ipinfo.io/json?token=a9ae3aec5cf5d5")
+            .then((response) => response.json()
+            ).then(function (jsonResponse) {
+                b.textContent = jsonResponse.ip // public ip
+                loc.textContent = jsonResponse.city  // location
+				region.textContent = jsonResponse.region //region
+                cityy = jsonResponse.city
+				
+				
+                // weather using city name
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': '50c973c06emsh3f4748941215766p17f27ajsn1d475fab539c',
+                        'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+                    }
+                };
+
+                fetch(`https://yahoo-weather5.p.rapidapi.com/weather?location=${cityy}&format=json&u=f`, options)
+                    .then(response => response.json())
+                    .then(response => [c.textContent = response['current_observation'].condition['text'],
+                        temp.textContent = response['current_observation'].condition['temperature'] + ss])
+            })
+            
+            // 2 - fetch() : location
+            // weather using #1 api elements ar variables
+
+
+    </script>
+
+</body>
+</html>
+
