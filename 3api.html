@@ -58,24 +58,21 @@ ss = String.fromCodePoint(8457)
 				
 				
                 // weather using city name
-                const options = {
+                 const options = {
                     method: 'GET',
                     headers: {
                         'X-RapidAPI-Key': '50c973c06emsh3f4748941215766p17f27ajsn1d475fab539c',
-                        'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+                        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
                     }
                 };
 
-                fetch(`https://yahoo-weather5.p.rapidapi.com/weather?location=${cityy}&format=json&u=f`, options)
+                fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${cityy}`, options)
                     .then(response => response.json())
-                    .then(response => [c.textContent = response['current_observation'].condition['text'],
-                        temp.textContent = response['current_observation'].condition['temperature'] + ss])
+                    .then(response => [c.textContent = response['current'].condition['text'],
+                     temp.textContent = response['current'].temp_f + ss
+                ])
             })
-            
-            // 2 - fetch() : location
-            // weather using #1 api elements ar variables
-
-
+        
     </script>
 
 </body>
